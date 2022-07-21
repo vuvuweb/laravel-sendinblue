@@ -33,6 +33,10 @@ trait SendinBlue
      */
     private function mailDriver()
     {
+        if ($this->mailer) {
+            return $this->mailer;
+        }
+
         return function_exists('config')
             ? config('mail.default', config('mail.driver')) : env('MAIL_MAILER', env('MAIL_DRIVER'));
     }
